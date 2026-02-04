@@ -1,10 +1,14 @@
-import { TodosProvider } from "./context/useTodos";
+import { Toaster } from "react-hot-toast";
+import { TodosProvider } from "./context/useTodosContext";
 import { HomePage } from "./pages/HomePage";
 
 export const App = () => {
   return (
-    <TodosProvider>
-      <HomePage />
-    </TodosProvider>
+    <>
+      <Toaster />
+      <TodosProvider>
+        <HomePage />
+      </TodosProvider>
+    </>
   );
 };
