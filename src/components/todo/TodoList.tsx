@@ -1,20 +1,22 @@
 import { useTodos } from "../../hooks/useTodos";
+import { useTodosContext } from "../../context/useTodosContext";
 import { DeleteIcon } from "../ui/icon/DeleteIcon";
 
 export const TodoList = () => {
-  const { todoList, editTodo, deleteTodo } = useTodos();
+  const { editTodo, deleteTodo } = useTodos();
+  const { filteredTodos } = useTodosContext();
 
-  if (!todoList || todoList.length === 0) {
+  if (!filteredTodos || filteredTodos.length === 0) {
     return (
       <div className="todo-list">
-        <p>No items in your list. Add a todo to begin.</p>
+        <p>No items in your list.</p>
       </div>
     );
   }
 
   return (
     <div className="todo-list">
-      {todoList.map((todo) => (
+      {filteredTodos.map((todo) => (
         <div
           key={todo.id}
           className={`todo-item ${todo.completed ? "completed" : ""}`}
